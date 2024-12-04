@@ -13,7 +13,21 @@ def fourier_featurize(x,numSinusoidals=20,period=2*np.pi):
     for i in range(numSinusoidals):
         x_featurized[:,2*i+1]=np.cos((i+1)*coefficient*x)
         x_featurized[:,2*i+2]=np.sin((i+1)*coefficient*x)
+        # x_featurized[:,2*i+1]=np.cos((i+1)*x)
+        # x_featurized[:,2*i+2]=np.sin((i+1)*x)
     return x_featurized
+
+# def fourier_featurize2(x,numSinusoidals=20,period=2*np.pi):
+#     # if x is a vector of 5 input values and numSinusoidals=20
+#     # x_featurized will be 5x41, the first one is the intercept
+#     # period is the orbit period in seconds
+#     # coefficient=2*np.pi/period
+#     x_featurized=np.zeros([x.shape[0],(numSinusoidals*2)+1])
+#     x_featurized[:,0]=1
+#     for n in range(1,numSinusoidals+1):
+#         x_featurized[:,2*n-1]=np.cos(n*x)
+#         x_featurized[:,2*n]=np.sin(n*x)
+#     return x_featurized
 
 def polynomial_featurize(x,polynomialDegree=5):
     # if x is a vector of 5 input values and polynomialDegree=20
