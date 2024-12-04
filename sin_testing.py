@@ -20,7 +20,7 @@ from sklearn.model_selection import train_test_split
 x = x.reshape(-1, 1)  # Make it a 2D array (samples, features)
 
 # Split the data
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=129)
 
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -46,7 +46,7 @@ model.add(keras.layers.Dense(128, activation="relu"))
 model.add(keras.layers.Dense(128, activation="relu"))
 model.add(keras.layers.Dense(128, activation="relu"))
 
-model.add(keras.layers.Dense(1, activation="sigmoid")) 
+model.add(keras.layers.Dense(1, activation="tanh")) 
 
 # model.compile("rmsprop", "binary_crossentropy", metrics=["accuracy"]) 
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
