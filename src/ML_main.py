@@ -116,20 +116,23 @@ for i in range(3):
     axs[0].scatter(time_data,current_data-current_data_just2Body,label='Observed Data',alpha=0.6)
     # axs[0].scatter(time_data,current_data,label='Observed Data',alpha=0.6)
     axs[0].plot(np.linspace(0,max(time_data),150001),predictions,color='r',label='Prediction')
-    axs[0].set_title('Prediction vs Observed Data')
+    axs[0].set_title('Prediction vs Observed Data After Removing Dominant Periodic Term')
     axs[0].set_xlabel('Time (s)')
-    axs[0].set_ylabel(axisLetter+' Data')
+    axs[0].set_ylabel(axisLetter+' Data (km)')
     axs[0].legend()
     axs[0].grid(True)
 
-    axs[1].scatter(time_data,current_data-current_data_noNoise,label='Noisy Data',alpha=0.6)
-    axs[1].plot(time_data,prediction+current_data_just2Body-current_data_noNoise,color='r',label='Prediction Residuals')
+    axs[1].scatter(time_data,(current_data-current_data_noNoise)*1000,label='Noisy Data',alpha=0.6)
+    axs[1].plot(time_data,(prediction+current_data_just2Body-current_data_noNoise)*1000,color='r',label='Prediction Residuals')
     # axs[1].plot(time_data,prediction-current_data_noNoise,color='r',label='Prediction Residuals')
     axs[1].set_title('Prediction Residuals')
     axs[1].set_xlabel('Time (s)')
-    axs[1].set_ylabel('Residuals')
+    axs[1].set_ylabel('Residuals (m)')
     axs[1].legend()
     axs[1].grid(True)
+
+    RMSval=np.sqrt(np.mean(np.square(prediction+current_data_just2Body-current_data_noNoise)))
+    print(RMSval*1000)
 
     
 
